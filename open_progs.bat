@@ -24,6 +24,8 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
 
 SET prog=POWERPNT.EXE
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% running) || (
+    echo ready to open %prog%...
+    timeout /t -1
     echo opening %prog%...
     start powershell -ExecutionPolicy Unrestricted -File "C:\Users\jlighthall\Documents\powershell\blank.ps1" && (echo OK) || (echo FAIL)
 )
