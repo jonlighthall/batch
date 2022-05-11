@@ -20,13 +20,15 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
 echo opening %%x...
         start /D %prog_dir% %%x && (echo OK) || (echo FAIL)
         )
-)
+    )
 
 SET prog=POWERPNT.EXE
 ::SET ppt_dir=
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
     tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (
         echo opening %ppt%...
+        echo ready to open %prog%...
+        timeout /t -1
         ::start /D %prog_dir% %prog% /S %ppt% && (echo OK) || (echo FAIL)
         start powershell -ExecutionPolicy Unrestricted -File "%USERPROFILE%\Documents\powershell\blank.ps1" && (echo OK) || (echo FAIL)
     )
