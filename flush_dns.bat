@@ -1,6 +1,6 @@
 :: flush DNS cache
 ipconfig /flushdns
-ipconfig /registerdns
+ipconfig /registerdns & :: requires elevation
 ipconfig /release
 ipconfig /renew
-netsh winsock reset
+netsh winsock reset & :: requires elevation
