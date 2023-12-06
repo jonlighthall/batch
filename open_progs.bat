@@ -1,3 +1,9 @@
+:: open_progs.bat - open commonly used programs
+
+:: DESCRIPTION the status of the programs listed below are checked, and if the target program is
+::   not running, it is opened. This script is used instad of adding programs to the Startup path
+::   to improve startup speed.
+
 @echo off
 SET STARTDIR="%cd%"
 SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
