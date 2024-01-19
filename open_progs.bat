@@ -28,6 +28,6 @@ echo opening %%x...
         )
     )
 
-echo goodbye
+echo:
+echo|set /p="goodbye"
 timeout /t 5
-::exit
