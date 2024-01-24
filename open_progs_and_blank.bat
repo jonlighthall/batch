@@ -1,8 +1,10 @@
 @echo off
 SET STARTDIR="%cd%"
+set /a counter=0
 SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
 SET prog=OneDrive.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
+    set /a counter+=1
     echo opening %prog%...
     start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
 )
@@ -10,6 +12,7 @@ tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% 
 SET prog_dir="%LOCALAPPDATA%\Microsoft\Teams"
 SET prog=Teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
+    set /a counter+=1
     echo opening %prog%...
     start /D %prog_dir% Update.exe --processStart "%prog%" && (echo OK) || (echo FAIL)    
     )
@@ -26,8 +29,10 @@ SET prog=POWERPNT.EXE
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
     tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (
         echo opening %ppt%...
+		if %counter% GTR 0 (
         echo ready to open %prog%...
         timeout /t 75
+		)
         start powershell -ExecutionPolicy Unrestricted -File "%USERPROFILE%\Documents\powershell\blank.ps1" && (echo OK) || (echo FAIL)
     )
 
