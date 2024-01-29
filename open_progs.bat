@@ -23,7 +23,7 @@ tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% 
 SET prog_dir = "C:\Program Files (x86)\Microsoft Office\Office16"
 FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
     tasklist /nh /fi "imagename eq %%x" | find /i "%%x" > nul && (echo %%x is running) || (
-echo|set /p="opening %%x... "
+    echo|set /p="opening %%x... "
         start /D %prog_dir% %%x && (echo OK) || (echo FAIL)
         )
     )

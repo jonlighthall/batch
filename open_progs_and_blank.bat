@@ -1,3 +1,9 @@
+:: open_progs_and_blank.bat - open commonly used programs and launch blank.ppsx
+
+:: DESCRIPTION the status of the programs listed below are checked, and if the target program is
+::   not running, it is opened. This script is used instad of adding programs to the Startup path
+::   to improve startup speed.
+
 @echo off
 SET STARTDIR="%cd%"
 set /a counter=0
@@ -5,7 +11,7 @@ SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
 SET prog=OneDrive.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
     set /a counter+=1
-    echo opening %prog%...
+    echo|set /p="opening %prog%... "
     start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
 )
 
@@ -13,28 +19,29 @@ SET prog_dir="%LOCALAPPDATA%\Microsoft\Teams"
 SET prog=Teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
     set /a counter+=1
-    echo opening %prog%...
+    echo|set /p="opening %prog%... "
     start /D %prog_dir% Update.exe --processStart "%prog%" && (echo OK) || (echo FAIL)    
     )
 
 SET prog_dir = "C:\Program Files (x86)\Microsoft Office\Office16"
 FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
     tasklist /nh /fi "imagename eq %%x" | find /i "%%x" > nul && (echo %%x is running) || (
-echo opening %%x...
+    echo|set /p="opening %%x... "
         start /D %prog_dir% %%x && (echo OK) || (echo FAIL)
         )
     )
 
 SET prog=POWERPNT.EXE
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
-    tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (
-        echo opening %ppt%...
+    tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (        
 		if %counter% GTR 0 (
         echo ready to open %prog%...
         timeout /t 75
 		)
+        echo|set /p="opening %ppt%... "
         start powershell -ExecutionPolicy Unrestricted -File "%USERPROFILE%\Documents\powershell\blank.ps1" && (echo OK) || (echo FAIL)
     )
 
-echo goodbye
-sleep 0.500
+echo:
+echo|set /p="goodbye"
+timeout /t 5

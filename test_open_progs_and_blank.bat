@@ -5,5 +5,7 @@ FOR %%x IN (POWERPNT.EXE powershell.exe) DO (
     )
 
 start open_progs_and_blank.bat
-echo done
-echo goodbye
+
+echo:
+echo|set /p="goodbye"
+timeout /t 5
