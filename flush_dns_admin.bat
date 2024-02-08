@@ -1,7 +1,7 @@
 :: flush DNS cache
 
 :: run from WSL with
-::  cmd.exe /c flush_dns.bat
+::  cmd.exe /c flush_dns_admin.bat
 
 ipconfig /flushdns
 ipconfig /registerdns & :: requires elevation
