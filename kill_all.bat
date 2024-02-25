@@ -1,1 +1,1 @@
-taskkill /fi "username eq jlighthall" /fi "memusage gt 100000" /fi "imagename ne explorer.exe"
+taskkill /fi "username eq %USERNAME%" /fi "memusage gt 100000" /fi "imagename ne explorer.exe"
