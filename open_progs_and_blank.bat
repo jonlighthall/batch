@@ -12,19 +12,19 @@ set /a count_login=0
 SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
 SET prog=OneDrive.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
-	set /a count_launch+=1		
+	set /a count_launch+=1
     set /a count_login+=1
     echo|set /p="opening %prog%... "
     start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
 )
 
-SET prog_dir="%LOCALAPPDATA%\Microsoft\Teams"
-SET prog=Teams.exe
+SET prog_dir="C:\Program Files\WindowsApps\MSTeams_24004.1307.2669.7070_x64__8wekyb3d8bbwe"
+SET prog=ms-teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
 	set /a count_launch+=1
 	set /a count_login+=1
     echo|set /p="opening %prog%... "
-    start /D %prog_dir% Update.exe --processStart "%prog%" && (echo OK) || (echo FAIL)    
+    start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
     )
 
 SET prog_dir = "C:\Program Files (x86)\Microsoft Office\Office16"
@@ -36,9 +36,11 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
         )
     )
 
+    echo "hello"
+
 SET prog=POWERPNT.EXE
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
-    tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (        
+    tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (
     	echo opening %ppt%...
     	if (%count_launch% GTR 0) (
     	   echo calculating wait...
@@ -46,14 +48,14 @@ SET ppt="%OneDrive%\Desktop\blank.ppsx"
     	   set /a do_wait=15
     	   echo do_wait = %do_wait%
     	   if %count_login% GTR 0 (
-    	   	  echo count_login = %count_login%	
+    	   	  echo count_login = %count_login%
     	   	  set /a do_wait+=(20*%count_login%)
     	   	  echo do_wait = %do_wait%
     	   )
-    	   echo waiting %do_wait%...	
+    	   echo waiting %do_wait%...
     	   timeout /t %do_wait%
-    	) 
-        echo ready to open %prog%	
+    	)
+        echo ready to open %prog%
         echo|set /p="opening %ppt%... "
         start powershell -ExecutionPolicy Unrestricted -File "%USERPROFILE%\Documents\powershell\blank.ps1" && (echo OK) || (echo FAIL)
     )
