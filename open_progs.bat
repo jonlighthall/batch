@@ -13,11 +13,10 @@ tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% 
     start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
 )
 
-SET prog_dir="C:\Program Files\WindowsApps\MSTeams_24004.1307.2669.7070_x64__8wekyb3d8bbwe"
 SET prog=ms-teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
     echo|set /p="opening %prog%... "
-    start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
+    start %prog% && (echo OK) || (echo FAIL)
 )
 
 SET prog_dir = "C:\Program Files (x86)\Microsoft Office\Office16"
