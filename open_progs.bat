@@ -6,7 +6,7 @@
 
 @echo off
 SET STARTDIR="%cd%"
-SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
+SET prog_dir="%PROGRAMFILES%\Microsoft OneDrive"
 SET prog=OneDrive.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
     echo|set /p="opening %prog%... "
