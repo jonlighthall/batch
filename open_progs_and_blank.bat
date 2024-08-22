@@ -9,7 +9,7 @@ SET STARTDIR="%cd%"
 :: declare counters
 set /a count_launch=0
 set /a count_login=0
-SET prog_dir="%LOCALAPPDATA%\Microsoft\OneDrive"
+SET prog_dir="%PROGRAMFILES%\Microsoft OneDrive"
 SET prog=OneDrive.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
 	set /a count_launch+=1
@@ -18,13 +18,12 @@ tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% 
     start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
 )
 
-SET prog_dir="C:\Program Files\WindowsApps\MSTeams_24004.1307.2669.7070_x64__8wekyb3d8bbwe"
 SET prog=ms-teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
 	set /a count_launch+=1
 	set /a count_login+=1
     echo|set /p="opening %prog%... "
-    start /D %prog_dir% %prog% && (echo OK) || (echo FAIL)
+    start %prog% && (echo OK) || (echo FAIL)
     )
 
 SET prog_dir = "C:\Program Files (x86)\Microsoft Office\Office16"
@@ -35,8 +34,6 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
         start /D %prog_dir% %%x && (echo OK) || (echo FAIL)
         )
     )
-
-    echo "hello"
 
 SET prog=POWERPNT.EXE
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
