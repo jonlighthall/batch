@@ -1,3 +1,5 @@
+:: all of the following commands requrie elevated permissions
+
 :: check disk
 chkdsk.exe /F
 :: system file checker
