@@ -34,6 +34,13 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
     )
 )
 
+:: Check if cac-monitor is already running
+SET prog=powershell.exe
+tasklist /nh /fi "imagename eq %prog%" /fi "windowtitle eq *cac-monitor*" | find /i "powershell.exe" > nul && (echo cac-monitor.ps1 is running) || (
+    echo|set /p="opening cac-monitor.ps1... "
+    start "CAC Monitor" powershell.exe -ExecutionPolicy Bypass -File "C:\Users\jlighthall\Documents\home\ubuntu\repos\powershell\cac-monitor.ps1" && (echo OK) || (echo FAIL)
+)
+
 echo:
 echo|set /p="goodbye"
 timeout /t 5

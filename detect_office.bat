@@ -10,30 +10,35 @@ setlocal enabledelayedexpansion
 :: Check for Office 365/2021/2019 (64-bit) - Microsoft 365 Click-to-Run
 if exist "C:\Program Files\Microsoft Office\root\Office16" (
     set "OFFICE_DIR=C:\Program Files\Microsoft Office\root\Office16"
+    set "OFFICE_VERSION=Office 365/2021/2019 (64-bit)"
     goto :found
 )
 
 :: Check for Office 365/2021/2019 (64-bit) - older location
 if exist "C:\Program Files\Microsoft Office\root\Office15" (
     set "OFFICE_DIR=C:\Program Files\Microsoft Office\root\Office15"
+    set "OFFICE_VERSION=Office 365/2013 (64-bit)"
     goto :found
 )
 
 :: Check for Office 2016/2019 (32-bit)
 if exist "C:\Program Files (x86)\Microsoft Office\Office16" (
     set "OFFICE_DIR=C:\Program Files (x86)\Microsoft Office\Office16"
+    set "OFFICE_VERSION=Office 2016/2019 (32-bit)"
     goto :found
 )
 
 :: Check for Office 2013 (32-bit)
 if exist "C:\Program Files (x86)\Microsoft Office\Office15" (
     set "OFFICE_DIR=C:\Program Files (x86)\Microsoft Office\Office15"
+    set "OFFICE_VERSION=Office 2013 (32-bit)"
     goto :found
 )
 
 :: Check for Office 2010 (32-bit)
 if exist "C:\Program Files (x86)\Microsoft Office\Office14" (
     set "OFFICE_DIR=C:\Program Files (x86)\Microsoft Office\Office14"
+    set "OFFICE_VERSION=Office 2010 (32-bit)"
     goto :found
 )
 
@@ -43,5 +48,6 @@ endlocal
 exit /b 1
 
 :found
+echo Detecting Office version... found %OFFICE_VERSION%
 endlocal & set "OFFICE_DIR=%OFFICE_DIR%"
 exit /b 0
