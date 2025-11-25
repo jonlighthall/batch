@@ -1,7 +1,8 @@
 @echo off
-echo|set /p="opening notepad... "
-tasklist /nh /fi "imagename eq notepad.exe" | find /i "notepad.exe" > nul && (echo %prog% is running) || (
-    (start notepad.exe)  && (echo OK) || (echo FAIL)
+SET prog=notepad.exe
+tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (echo %prog% is running) || (
+    echo|set /p="opening %prog%... "
+    start %prog% && (echo OK) || (echo FAIL)
 )
 echo:
 echo|set /p="goodbye"
