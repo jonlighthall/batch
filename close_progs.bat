@@ -4,7 +4,6 @@
 ::   target program is running, it is closed gracefully using taskkill.
 
 @echo off
-SET STARTDIR="%cd%"
 
 SET prog=ms-teams.exe
 tasklist /nh /fi "imagename eq %prog%" | find /i "%prog%" > nul && (
