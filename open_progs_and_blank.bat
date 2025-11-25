@@ -38,7 +38,7 @@ SET prog=POWERPNT.EXE
 SET ppt="%OneDrive%\Desktop\blank.ppsx"
     tasklist /v /fi "imagename eq %prog%" /fi "username eq %USERDOMAIN%\%USERNAME%" | find /i "blank.ppsx" > nul && (echo %ppt% open) || (
     	echo opening %ppt%...
-    	if (%count_launch% GTR 0) (
+    	if %count_launch% GTR 0 (
     	   echo calculating wait...
     	   echo count_launch = %count_launch%
     	   set /a do_wait=15
