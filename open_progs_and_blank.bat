@@ -1,8 +1,8 @@
 :: open_progs_and_blank.bat - open commonly used programs and launch blank.ppsx
 
-:: DESCRIPTION the status of the programs listed below are checked, and if the target program is
-::   not running, it is opened. This script is used instead of adding programs to the Startup path
-::   to improve startup speed.
+:: DESCRIPTION the status of the programs listed below are checked, and if the
+::   target program is not running, it is opened. This script is used instead of
+::   adding programs to the Startup path to improve startup speed.
 
 @echo off
 :: declare counters
