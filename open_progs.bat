@@ -40,10 +40,10 @@ wmic process where "name='powershell.exe' and CommandLine like '%%cac-monitor.ps
     start "CAC Monitor" powershell.exe -ExecutionPolicy Bypass -File "C:\Users\jlighthall\Documents\home\ubuntu\repos\powershell\cac-monitor.ps1" && (echo OK) || (echo FAIL)
 )
 
-:: Check if wsl-vpnkit is already running
-wsl -d wsl-vpnkit --exec pgrep -f "wsl-vpnkit" >nul 2>&1 && (echo wsl-vpnkit is running) || (
+:: Check if wsl-vpnkit is already running by checking inside the distro
+wsl.exe -d wsl-vpnkit --exec sh -c "pgrep -f '/app/wsl-vm' >/dev/null 2>&1" && (echo wsl-vpnkit is running) || (
     echo|set /p="opening wsl-vpnkit... "
-    start "WSL VPNKit" wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit && (echo OK) || (echo FAIL)
+    start "wsl-vpnkit" wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit && (echo OK) || (echo FAIL)
 )
 
 echo:
