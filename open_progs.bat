@@ -34,17 +34,8 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
     )
 )
 
-:: Check if cac-monitor is already running by checking command line arguments
-wmic process where "name='powershell.exe' and CommandLine like '%%cac-monitor.ps1%%'" get ProcessId 2>nul | find /i "ProcessId" >nul && (echo cac-monitor.ps1 is running) || (
-    echo|set /p="opening cac-monitor.ps1... "
-    start "CAC Monitor" powershell.exe -ExecutionPolicy Bypass -File "C:\Users\jlighthall\Documents\home\ubuntu\repos\powershell\cac-monitor.ps1" && (echo OK) || (echo FAIL)
-)
-
-:: Check if wsl-vpnkit is already running by checking inside the distro
-wsl.exe -d wsl-vpnkit --exec sh -c "pgrep -f '/app/wsl-vm' >/dev/null 2>&1" && (echo wsl-vpnkit is running) || (
-    echo|set /p="opening wsl-vpnkit... "
-    start "wsl-vpnkit" wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit && (echo OK) || (echo FAIL)
-)
+call "%~dp0open_cac_monitor.bat" /Q
+call "%~dp0open_vpn.bat" /Q
 
 echo:
 echo|set /p="goodbye"
