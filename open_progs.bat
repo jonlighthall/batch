@@ -7,7 +7,7 @@
 @echo off
 
 :: Detect Office installation
-call detect_office.bat
+call "%~dp0detect_office.bat"
 if errorlevel 1 (
     echo Warning: Office not found, some programs may not launch
     set "OFFICE_DIR=C:\Program Files (x86)\Microsoft Office\Office16"
@@ -34,8 +34,8 @@ FOR %%x IN (ONENOTE.EXE OUTLOOK.EXE) DO (
     )
 )
 
-call "%~dp0open_cac_monitor.bat" /Q
 call "%~dp0open_vpn.bat" /Q
+call "%~dp0open_cac_monitor.bat" /Q
 
 echo:
 echo|set /p="goodbye"
